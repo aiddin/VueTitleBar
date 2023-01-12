@@ -2,7 +2,7 @@
   <div v-if="platform === 'darwin'" >
     This is Mac
   </div>
-  <div v-if="platform === 'win32'" >
+  <div v-if="platform === 'Win32'" >
     This is Windows
   </div>
   <div class="hello">
