@@ -2,7 +2,7 @@
   <div v-if="platform === 'darwin'" >
     This is Mac
   </div>
-  <div v-if="platform !== 'darwin'" >
+  <div v-if="platform === 'win32'" >
     This is Windows
   </div>
   <div class="hello">
@@ -63,14 +63,16 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+  {{ platform }}
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  props: [
+    "msg",
+    "platform"
+  ]
 }
 </script>
 

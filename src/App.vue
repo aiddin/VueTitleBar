@@ -1,5 +1,5 @@
 <template>
-  <TitleBar/>
+  <VTitleBar :platform="platform" />
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   
@@ -7,14 +7,24 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import TitleBar from './components/TitleBar.vue';
+import VTitleBar from './components/TitleBar.vue';
+// import osType from 'os-type';
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    TitleBar
-  }
+    VTitleBar
+  },
+  data() {
+    return {
+      platform: navigator.platform,
+    }
+  },
+  mounted() {
+  console.log(navigator.platform);
+},
 }
+
 </script>
 
 <style>

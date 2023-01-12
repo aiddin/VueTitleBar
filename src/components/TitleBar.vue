@@ -3,7 +3,7 @@
     <div class="titlebar-resize-handle top"></div>
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
-    <div v-if="platform !== 'darwin'" class="titlebar-buttons-osx">
+    <div v-if="platform === 'darwin'" class="titlebar-buttons-osx">
       <div class="macButton macButtonClose" @click="onClose()" v-if="isClosable">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
             <path stroke="#4c0000" fill="none"
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="titlebar-buttons" v-if="platform === 'darwin'">
+    <div class="titlebar-buttons" v-if="platform === 'Win32'">
       <font-awesome-icon icon="fa-solid fa-xmark" />
       <button
         aria-label="minimize"
@@ -103,7 +103,7 @@ export default {
   components: {
     // library,
   },
-  name: "v-titlebar",
+  name: "TitleBar",
   props: {
     theme: {
       type: String,
@@ -156,6 +156,9 @@ export default {
     stylePlatform() {
       return `titlebar-platform-${this.platform}`;
     },
+  },
+  method:{
+    
   },
 };
 </script>
