@@ -161,10 +161,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::-webkit-scrollbar {         display: none;       };
+
 $titlebar-height: 28px;
 .titlebar {
-  position: sticky;
+  position: sticky  ;
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
