@@ -28,8 +28,9 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   })
-  win.webContents.insertCSS('html, body { overflow: hidden; }')
-
+  // win.webContents.insertCSS('html, body { overflow: hidden; }')
+  // win.webContents.insertCSS('html, body { -webkit-scrollbar {display: none;};}')
+  // win.webContents.insertCSS('html, ::-webkit-scrollbar { display: none;} ');
   
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -48,7 +49,7 @@ async function createWindow() {
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
+  if (process.platform === 'darwin') {
     app.quit()
   }
 })
