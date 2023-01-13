@@ -8,7 +8,9 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
+import platform from 'platform';
 // import osType from 'os-type';
+
 export default {
   name: 'App',
   components: {
@@ -17,11 +19,14 @@ export default {
   },
   data() {
     return {
-      platform: navigator.platform,
+      platform: platform.os.family
+    
     }
   },
   mounted() {
-  console.log(navigator.platform);
+   
+    console.log(this.platform + ' huh');
+   
 },
 }
 

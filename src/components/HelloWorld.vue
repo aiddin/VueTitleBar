@@ -2,10 +2,12 @@
   <div v-if="platform === 'darwin'" >
     This is Mac
   </div>
-  <div v-if="platform === 'Win32'" >
+  <div v-if="platform === 'Windows'" >
     This is Windows
   </div>
   <div class="hello">
+    {{ platform }}
+
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -63,7 +65,6 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
-  {{ platform }}
 </template>
 
 <script>
