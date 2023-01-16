@@ -1,5 +1,5 @@
 'use strict'
-
+//MAIN PROCESS2
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
@@ -12,13 +12,14 @@ protocol.registerSchemesAsPrivileged([
 
 async function createWindow() {
   // Create the browser window.
+  console.log('hehe first')
   const win = new BrowserWindow({
     frame: false,
     transparent: true,
     titleBarStyle: 'hiddenInset',
+    overflow: 'hidden', 
     width: 800,
     height: 600,
-   
     webPreferences: {
      
 
@@ -28,19 +29,31 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   })
-  // win.webContents.insertCSS('html, body { overflow: hidden; }')
-  // win.webContents.insertCSS('html, body { -webkit-scrollbar {display: none;};}')
-  // win.webContents.insertCSS('html, ::-webkit-scrollbar { display: none;} ');
-  
+//   win.webContents.insertCSS( {
+//     -ms-overflow-style: none;  /* Internet Explorer 10+ */
+//     scrollbar-width: none;  /* Firefox */
+// })
+
+//win.webContents.insertCSS(::-webkit-scrollbar { 
+//     display: none;  /* Safari and Chrome */
+// })
+var os = process.platform
+  win.webContents.insertCSS('::-webkit-scrollbar { display: none;} ');
+  if ((process.platform) === 'win32') {
+    console.log('sending')
+  win.webContents.send(os)
+  }
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     if (!process.env.IS_TEST) win.webContents.openDevTools()
+    console.log('hehe')
   } else {
     createProtocol('app')
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
+    
   }
 }
 
@@ -50,7 +63,6 @@ app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform === 'darwin') {
-    console.log('darwin')
     app.quit()
   }
 })
@@ -79,6 +91,7 @@ app.on('ready', async () => {
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === 'win32') {
+    console.log(process.platform)
     process.on('message', (data) => {
       if (data === 'graceful-exit') {
         app.quit()
@@ -86,6 +99,7 @@ if (isDevelopment) {
     })
   } else {
     process.on('SIGTERM', () => {
+
       app.quit()
     })
   }

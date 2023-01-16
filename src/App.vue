@@ -1,17 +1,23 @@
 <template>
-  <VTitleBar :platform="platform" />
+  <VTitleBar :platform="platform" :theme="theme"/>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   
 </template>
 
 <script>
+// Renderer process
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
 import platform from 'platform';
+// import {ipcRenderer} from 'electron';
 // import osType from 'os-type';
-
+require('electron').ipcRenderer.on('os', () => {
+                console.log("logging in");
+             
+    })
 export default {
+
   name: 'App',
   components: {
     HelloWorld,
@@ -19,8 +25,9 @@ export default {
   },
   data() {
     return {
-      platform: platform.os.family
-    
+      theme: 'dark',
+      platform: platform.os.family,
+    test:''
     }
   },
   mounted() {
@@ -42,5 +49,4 @@ export default {
   color: #473e3e;
  
 }
-
 </style>

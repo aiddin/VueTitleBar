@@ -184,11 +184,11 @@ $titlebar-height: 28px;
   -webkit-app-region: drag;
   &.titlebar-style-dark {
     color: #fff;
-    background: #2d3135;
+    background: #000000;
   }
   &.titlebar-style-light {
-    color: #ffffff;
-    background: #000000;
+    color: #989696;
+    background: #470b0b;
   }
   .titlebar-resize-handle {
     position: absolute;
