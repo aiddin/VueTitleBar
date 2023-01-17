@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      theme: 'dark',
+      theme: 'light',
       platform: process.platform,
     test:''
     } 

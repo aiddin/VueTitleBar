@@ -41,11 +41,12 @@ async function createWindow() {
 var os = process.platform
   win.webContents.insertCSS('::-webkit-scrollbar { display: none;} ');
   if ((process.platform) === 'win32') {
-    if (nativeTheme.themeSource === 'dark') {
+    if (nativeTheme.shouldUseDarkColors === true) {
       console.log('dark')}
+    console.log(nativeTheme.shouldUseDarkColors)}
     console.log('sending')
   win.webContents.send(os)
-  }
+  
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
