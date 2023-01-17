@@ -10,12 +10,14 @@
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
 import platform from 'platform';
-// import {ipcRenderer} from 'electron';
-// import osType from 'os-type';
-require('electron').ipcRenderer.on('os', () => {
-                console.log("logging in");
+// const fs = require ('fs')
+// // var fs = require('fs');
+// // // import {ipcRenderer} from 'electron';
+// // // import osType from 'os-type';
+// require('electron').ipcRenderer.on('os', () => {
+//                 console.log("logging in");
              
-    })
+//     })
 export default {
 
   name: 'App',
