@@ -10,14 +10,9 @@
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
 import platform from 'platform';
-// const fs = require ('fs')
-// // var fs = require('fs');
-// // // import {ipcRenderer} from 'electron';
-// // // import osType from 'os-type';
-// require('electron').ipcRenderer.on('os', () => {
-//                 console.log("logging in");
-             
-//     })
+import {ipcRenderer} from "electron";
+ 
+
 export default {
 
   name: 'App',
@@ -31,6 +26,12 @@ export default {
       platform: platform.os.family,
     test:''
     }
+  },
+  method: {
+    submitForm(data){
+           // this will send the data to the main process
+          ipcRenderer.send("form-submission-event", data)
+          }
   },
   mounted() {
    

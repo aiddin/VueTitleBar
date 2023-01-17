@@ -1,5 +1,10 @@
 {
   "name": "vue-desktop",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,11 +31,7 @@
     "sass-loader": "^13.2.0",
     "vue": "^3.2.13"
   },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
-  },
+  
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
