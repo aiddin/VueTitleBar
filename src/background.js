@@ -33,7 +33,7 @@ async function createWindow() {
 //   win.webContents.insertCSS( {
 //     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 //     scrollbar-width: none;  /* Firefox */
-// })
+// })`
 
 //win.webContents.insertCSS(::-webkit-scrollbar { 
 //     display: none;  /* Safari and Chrome */
