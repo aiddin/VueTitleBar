@@ -9,9 +9,11 @@
 // Renderer process
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
-import platform from 'platform';
+import process from 'process';
 import {ipcRenderer} from "electron";
- 
+// const { nativeTheme } = require("electron").remote;
+// const electron = require("electron");
+// const nativeTheme = electron.remote.nativeTheme;
 
 export default {
 
@@ -23,19 +25,19 @@ export default {
   data() {
     return {
       theme: 'dark',
-      platform: platform.os.family,
+      platform: process.platform,
     test:''
-    }
+    } 
   },
   method: {
     submitForm(data){
            // this will send the data to the main process
-          ipcRenderer.send("form-submission-event", data)
+          ipcRenderer.get("form-submission-event", data)
           }
   },
   mounted() {
    
-    console.log(this.platform + ' huh');
+    // console.log(this.platform + ' huh');
    
 },
 }
