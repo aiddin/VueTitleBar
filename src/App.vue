@@ -2,7 +2,7 @@
   <VTitleBar :platform="platform" :theme="theme"/>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
-  
+  {{ platform }}
 </template>
 
 <script>
@@ -10,7 +10,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
 import process from 'process';
-import {ipcRenderer} from "electron";
+// import {ipcRenderer} from "electron";
 // const { nativeTheme } = require("electron").remote;
 // const electron = require("electron");
 // const nativeTheme = electron.remote.nativeTheme;
@@ -30,10 +30,9 @@ export default {
     } 
   },
   method: {
-    submitForm(data){
-           // this will send the data to the main process
-          ipcRenderer.get("form-submission-event", data)
-          }
+    // test(){
+    //     window.ipcRenderer.send(channel, args...) // or any other ipcRenderer method you want to invoke
+    // }
   },
   mounted() {
    

@@ -23,13 +23,23 @@ async function createWindow() {
     height: 600,
     webPreferences: {
       
-      preload: path.join("./src/preload.js", 'preload.js'),
+     
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      enableRemoteModule: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   })
+  var os = process.platform
+  win.webContents.insertCSS('::-webkit-scrollbar { display: none;} ');
+  if ((process.platform) === 'win32') {
+    if (nativeTheme.shouldUseDarkColors === true) {
+      console.log('dark')}
+    console.log(nativeTheme.shouldUseDarkColors)}
+    console.log('sending')
+  win.webContents.send(os)
 //   win.webContents.insertCSS( {
 //     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 //     scrollbar-width: none;  /* Firefox */
@@ -38,14 +48,7 @@ async function createWindow() {
 //win.webContents.insertCSS(::-webkit-scrollbar { 
 //     display: none;  /* Safari and Chrome */
 // })
-var os = process.platform
-  win.webContents.insertCSS('::-webkit-scrollbar { display: none;} ');
-  if ((process.platform) === 'win32') {
-    if (nativeTheme.shouldUseDarkColors === true) {
-      console.log('dark')}
-    console.log(nativeTheme.shouldUseDarkColors)}
-    console.log('sending')
-  win.webContents.send(os)
+
   
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

@@ -23,6 +23,7 @@ module.exports = defineConfig({
       externals: ['my-native-dep'],
       // If you are using Yarn Workspaces, you may have multiple node_modules folders
       // List them all here so that VCP Electron Builder can find them
+      preload: 'src/preload.js',
       nodeModulesPath: ['../../node_modules', './node_modules']
     }
   }
