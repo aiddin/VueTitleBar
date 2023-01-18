@@ -2,7 +2,9 @@
 //MAIN PROCESS2
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+import { ipcMain } from 'electron'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const nativeTheme = require('electron').nativeTheme
 const path = require('path')
@@ -40,6 +42,10 @@ async function createWindow() {
     console.log(nativeTheme.shouldUseDarkColors)}
     console.log('sending')
   win.webContents.send(os)
+  ipcMain.on('clientMessage', (event, args) => {
+    console.log('received a message from vue: '+args)
+    win.webContents.send('electronMessage','Reply from main process: '+args)
+   });
 //   win.webContents.insertCSS( {
 //     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 //     scrollbar-width: none;  /* Firefox */

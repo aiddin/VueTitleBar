@@ -45,6 +45,7 @@
     "vue-cli-plugin-electron-builder": "~2.1.1"
   },
   "eslintConfig": {
+    
     "root": true,
     "env": {
       "node": true
