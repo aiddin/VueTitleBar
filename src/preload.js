@@ -1,23 +1,17 @@
 
 import { contextBridge, ipcRenderer } from 'electron'
-contextBridge.exposeInMainWorld('ipcRenderer', {
- send: (channel, data) => {// whitelist channels
-   let validChannels = ['toMain']
-        if (validChannels.includes(channel)) {
-            ipcRenderer.send(channel, data)
-        }
-    },
-    on: (channel, func) => {
-      let validChannels = ['electronMessage'] // <-- Array of all ipcMain Channels used in the electron
-      if (validChannels.includes(channel)) {
-          // Deliberately strip event as it includes `sender`
-          ipcRenderer.on(channel, (event, ...args) => func(...args))
-      }
-  }
 
-  
-})
+const WINDOW_API = {
+  greet: (message) => ipcRenderer.send("greet", message),
+  getOs: () => ipcRenderer.invoke("get/os"),
+
+}
+contextBridge.exposeInMainWorld("api", WINDOW_API);
+
 console.log(process.platform)
+
+
+
 // window.onload = () => {
 //   const { dialog } = require("electron").remote;
 //   window.electron = {};

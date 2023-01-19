@@ -2,8 +2,9 @@
 //MAIN PROCESS2
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { ipcMain } from 'electron'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+
+const {ipcMain} = require('electron')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const nativeTheme = require('electron').nativeTheme
@@ -34,21 +35,18 @@ async function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  var os = process.platform
+  
   win.webContents.insertCSS('::-webkit-scrollbar { display: none;} ');
   if ((process.platform) === 'win32') {
-    if (nativeTheme.shouldUseDarkColors === true) {
-      console.log('dark')}
+    if (nativeTheme.shouldUseDarkColors !== true) {
+      console.log('dark')
     console.log(nativeTheme.shouldUseDarkColors)}
     console.log('sending')
-  win.webContents.send(os)
-  ipcMain.on('clientMessage', (event, args) => {
-    console.log('received a message from vue: '+args)
-    win.webContents.send('electronMessage','Reply from main process: '+args)
-   });
+  }
+
+ 
 //   win.webContents.insertCSS( {
 //     -ms-overflow-style: none;  /* Internet Explorer 10+ */
-//     scrollbar-width: none;  /* Firefox */
 // })`
 
 //win.webContents.insertCSS(::-webkit-scrollbar { 
@@ -98,6 +96,7 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+  
   createWindow()
 })
 
@@ -117,3 +116,8 @@ if (isDevelopment) {
     })
   }
 }
+
+ipcMain.on("greet", (event, args) => {
+  console.log(args)
+})
+ ipcMain.on( )

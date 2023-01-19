@@ -4,19 +4,19 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
+  <button @click="clickTest">click me</button>
 </template>
 
 <script>
 // Renderer process
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
-import process from 'process';
-// import { ipcRenderer } from 'electron';
-// window.ipcRenderer = ipcRenderer;
+// import { channel } from 'diagnostics_channel';
 
 // const { nativeTheme } = require("electron").remote;
 // const electron = require("electron");
 // const nativeTheme = electron.remote.nativeTheme;
+
 
 export default {
 
@@ -25,23 +25,24 @@ export default {
     HelloWorld,
     VTitleBar
   },
-  data() {
+  data() { 
     return {
       theme: 'light',
       platform: process.platform,
-    test:''
+      test:'',
+      dataToSend:'test',
     } 
   },
-  method: {
-    
-    },
-  
-  mounted() {
-   
-    window.ipcRenderer.on('electronMessage', (event, data) => {
-      console.log('message from electron: '+data)
-});
-  }
+  methods: {
+    clickTest(){
+      console.log('clicked')
+      window.api.greet("hjehe")
+    }
+  },
+mounted(){
+  window.api.greet("hello from renderer")
+
+}
 }
 
 </script>

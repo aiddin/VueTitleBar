@@ -4,7 +4,7 @@
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
 
-    <div v-if="platform === 'win32'" class="titlebar-buttons-osx">
+    <div v-if="platform !== 'win32'" class="titlebar-buttons-osx">
       <div class="macButton macButtonClose" @click="onClose()" v-if="isClosable">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
             <path stroke="#4c0000" fill="none"
@@ -16,7 +16,7 @@
             <rect fill="#975500" width="8" height="2" x="2" y="5" fill-rule="evenodd"></rect>
         </svg>
     </div>
-    <div class="macButton macButtonMaximize" @click="onMaximize()" v-if="isMaximizable">
+    <div class="macButton macButtonMaximize" @click="onMaximize" v-if="isMaximizable">
         <svg name="TitleBarMaximizeMac" width="12" height="12" viewBox="0 0 12 12">
             <g fill="#006500" fill-rule="evenodd">  
                 <path d="M5,3 C5,3 5,6.1325704 5,6.48601043 C5,6.83945045 5.18485201,7 5.49021559,7 L9,7 L9,6 L8,6 L8,5 L7,5 L7,4 L6,4 L6,3 L5,3 Z"
@@ -161,7 +161,9 @@ export default {
     },
   },
   method:{
-    
+    onMaximize(){
+      console.log('onMaximize')
+    }
   },
 };
 </script>
