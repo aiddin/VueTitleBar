@@ -39,15 +39,15 @@ export default {
   watch: {
    nativeTheme:{
     handler(){
-      
+      if (this.nativeTheme === true){
+        this.theme = 'dark'
+      } else {
+        this.theme = 'light'
+      }
     }
    }
   },
-  computed: {
-    styleClass() {
-      return this.theme === "light" ? "light" : "dark";
-    },
-  },
+ 
   methods: {
     clickTest(){
       console.log('process.platform: ', process.platform)
@@ -56,6 +56,7 @@ export default {
    async invokeTest(){
       this.platform = await window.api.getOs()
     this.nativeTheme = await window.api.getTheme()
+    window.api.greet("retrieving platform")
     console.log(this.platform+' is the platform')
       
   },
