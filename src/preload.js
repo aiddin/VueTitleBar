@@ -4,7 +4,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 const WINDOW_API = {
   greet: (message) => ipcRenderer.send("greet", message),
   getOs: () => ipcRenderer.invoke("get/os"),
-
+  getTheme : () => ipcRenderer.invoke("get/theme"),
 }
 contextBridge.exposeInMainWorld("api", WINDOW_API);
 

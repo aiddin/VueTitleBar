@@ -4,7 +4,7 @@
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
 
-    <div v-if="platform !== 'win32'" class="titlebar-buttons-osx">
+    <div v-if="platform === 'win32'" class="titlebar-buttons-osx">
       <div class="macButton macButtonClose" @click="onClose()" v-if="isClosable">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
             <path stroke="#4c0000" fill="none"
@@ -186,7 +186,7 @@ $titlebar-height: 28px;
   -webkit-app-region: drag;
   &.titlebar-style-dark {
     color: #fff;
-    background: #000000;
+    background: #626262;
   }
   &.titlebar-style-light {
     color: #989696;
@@ -270,7 +270,7 @@ $titlebar-height: 28px;
         padding: 0 10px;
         outline: none;
         &:hover {
-          background-color: rgba(0, 0, 0, 0.2);
+          background-color: rgb(0, 0, 0);
         }
       }
     }
@@ -301,7 +301,7 @@ $titlebar-height: 28px;
         fill: currentColor;
       }
       &:hover {
-        background-color: rgba(233, 233, 233, 0.2);
+        background-color: rgb(233, 233, 233);
         color: currentColor;
       }
       &.close:hover {

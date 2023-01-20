@@ -120,4 +120,13 @@ if (isDevelopment) {
 ipcMain.on("greet", (event, args) => {
   console.log(args)
 })
- ipcMain.on( )
+ // eslint-disable-next-line no-unused-vars
+ ipcMain.handle("get/os", async (event, args) => {
+  var Os = process.platform
+  return Os;
+ });
+ // eslint-disable-next-line no-unused-vars
+ ipcMain.handle("get/theme", async (event, args) => {
+ var colors = nativeTheme.shouldUseDarkColors
+  return colors;
+ });

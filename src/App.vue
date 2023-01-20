@@ -4,7 +4,7 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
-  <button @click="clickTest">click me</button>
+  <button @click="created">click me</button>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import VTitleBar from './components/TitleBar.vue';
 // import { channel } from 'diagnostics_channel';
-
+// import {nativeTheme} from 'electron';
 // const { nativeTheme } = require("electron").remote;
 // const electron = require("electron");
 // const nativeTheme = electron.remote.nativeTheme;
@@ -25,23 +25,50 @@ export default {
     HelloWorld,
     VTitleBar
   },
+  
+
   data() { 
     return {
       theme: 'light',
+      nativeTheme: '',
       platform: process.platform,
       test:'',
-      dataToSend:'test',
+      dataToSend:'data to send to main.',
     } 
+  },
+  watch: {
+   nativeTheme:{
+    handler(){
+      
+    }
+   }
+  },
+  computed: {
+    styleClass() {
+      return this.theme === "light" ? "light" : "dark";
+    },
   },
   methods: {
     clickTest(){
-      console.log('clicked')
-      window.api.greet("hjehe")
-    }
+      console.log('process.platform: ', process.platform)
+      window.api.greet(this.dataToSend)
+    },
+   async invokeTest(){
+      this.platform = await window.api.getOs()
+    this.nativeTheme = await window.api.getTheme()
+    console.log(this.platform+' is the platform')
+      
   },
+  async created (){
+    this.platform = await window.api.getOs()
+    this.nativeTheme = await window.api.getTheme()
+    console.log(this.platform+' is the platform')
+},
 mounted(){
+  this.invokeTest()
   window.api.greet("hello from renderer")
-
+  
+}
 }
 }
 
