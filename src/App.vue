@@ -4,7 +4,7 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
-  <button @click="created">click me</button>
+  <button @click="invokeTest">click me</button>
 </template>
 
 <script>
