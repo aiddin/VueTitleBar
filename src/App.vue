@@ -6,6 +6,8 @@
   {{ platform }}
   <button @click="invokeTest">click me</button>
   <button @click="minimize">minimize me</button>
+  <button @click="maximize">maximize me</button>
+  <button @click="close">close me</button>
 </template>
 
 <script>
@@ -52,6 +54,12 @@ export default {
   methods: {
     minimize() {
      window.api.minimize('minimize')
+    },
+    maximize() {
+      window.api.maximize('maximize')
+    },
+    close() {
+      window.api.close('close')
     },
     clickTest(){
       console.log('process.platform: ', process.platform)

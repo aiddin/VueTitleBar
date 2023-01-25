@@ -134,8 +134,21 @@ ipcMain.on("greet", (event, args) => {
  var colors = nativeTheme.shouldUseDarkColors
   return colors;
  });
-
  ipcMain.on("minimize", (event, args) => {
   console.log(args)
   BrowserWindow.getFocusedWindow().minimize()
+  });
+  
+ // eslint-disable-next-line no-unused-vars
+ ipcMain.on("maximize", function(event) {
+  if(BrowserWindow.getFocusedWindow().isMaximized()) {
+      BrowserWindow.getFocusedWindow().unmaximize();
+  } else {
+      BrowserWindow.getFocusedWindow().maximize();
+  }
+});
+
+ ipcMain.on("close", (event, args) => {
+  console.log(args)
+  BrowserWindow.getFocusedWindow().close()
  });

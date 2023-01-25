@@ -16,7 +16,7 @@
             <rect fill="#975500" width="8" height="2" x="2" y="5" fill-rule="evenodd"></rect>
         </svg>
     </div>
-    <div class="macButton macButtonMaximize" @click="onMaximize" v-if="isMaximizable">
+    <div class="macButton macButtonMaximize" @click="onMaximize" >
         <svg name="TitleBarMaximizeMac" width="12" height="12" viewBox="0 0 12 12">
             <g fill="#006500" fill-rule="evenodd">  
                 <path d="M5,3 C5,3 5,6.1325704 5,6.48601043 C5,6.83945045 5.18485201,7 5.49021559,7 L9,7 L9,6 L8,6 L8,5 L7,5 L7,4 L6,4 L6,3 L5,3 Z"
@@ -50,7 +50,7 @@
         title="Minimize"
         tabindex="-1"
         @click="onMinimize()"
-        v-if="isMinimizable"
+        
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -68,8 +68,8 @@
         aria-label="maximize"
         title="Maximize"
         tabindex="-1"
-        @click="onMaximize()"
-        v-if="isMaximizable"
+        @click="maximize"
+    
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@
         tabindex="-1"
         class="close"
         @click="onClose()"
-        v-if="isClosable"
+        
       >
         <svg
           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="10" height="10">
@@ -120,30 +120,10 @@ export default {
     menu: {
       type: Array,
       default: function () {
-        return [];
+        return [1, 2, 3];
       },
     },
-    isMinimizable: {
-      type: Boolean,
-      default: true,
-    },
-    isMaximizable: {
-      type: Boolean,
-      default: true,
-    },
-    isClosable: {
-      type: Boolean,
-      default: true,
-    },
-    onMinimize: {
-      type: Function,
-    },
-    onMaximize: {
-      type: Function,
-    },
-    onClose: {
-      type: Function,
-    },
+  
     showIcon: {
       type: Boolean,
       default: true,
@@ -162,8 +142,9 @@ export default {
     },
   },
   method:{
-    onMaximize(){
-      console.log('onMaximize')
+    maximize(){
+      window.api.maximize('maximize')
+
     }
   },
 };

@@ -6,6 +6,8 @@ const WINDOW_API = {
   getOs: () => ipcRenderer.invoke("get/os"),
   getTheme : () => ipcRenderer.invoke("get/theme"),
   minimize: (message) => ipcRenderer.send("minimize",message),
+  maximize: (message) => ipcRenderer.send("maximize",message),
+  close: (message) => ipcRenderer.send("close",message),
   
 }
 contextBridge.exposeInMainWorld("api", WINDOW_API);
