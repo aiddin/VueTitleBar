@@ -1,4 +1,5 @@
 <template>
+  huh
   <VTitleBar :platform="platform" :theme="theme" />
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
@@ -20,7 +21,7 @@ import VTitleBar from "./components/TitleBar.vue";
 // const nativeTheme = electron.remote.nativeTheme;
 
 export default {
-  name: "App",
+  name: "Test",
   components: {
     HelloWorld,
     VTitleBar,

@@ -14,10 +14,29 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+
 async function createWindow() {
   // Create the browser window.
   console.log('hehe first')
   const win = new BrowserWindow({
+    frame: false,
+    transparent: true,
+    titleBarStyle: 'hiddenInset',
+    overflow: 'hidden', 
+    width: 800,
+    height: 600,
+    webPreferences: {
+      
+     
+      // Use pluginOptions.nodeIntegration, leave this alone
+      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      enableRemoteModule: true,
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+  const huh = new BrowserWindow({
     frame: false,
     transparent: true,
     titleBarStyle: 'hiddenInset',
@@ -55,7 +74,17 @@ async function createWindow() {
 //win.webContents.insertCSS(::-webkit-scrollbar { 
 //     display: none;  /* Safari and Chrome */
 // })
-
+if (process.env.WEBPACK_DEV_SERVER_URL) {
+  // Load the url of the dev server if in development mode
+  await huh.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+  if (!process.env.IS_TEST) huh.webContents.openDevTools()
+  console.log('hehe')
+} else {
+  createProtocol('TestTer')
+  // Load the index.html when not in development
+  huh.loadURL('test://./index.html')
+  
+}
   
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {

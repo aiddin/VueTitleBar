@@ -5,26 +5,40 @@
     <div class="titlebar-resize-handle left"></div>
 
     <div v-if="platform === 'darwin'" class="titlebar-buttons-osx">
-      <div class="macButton macButtonClose" @click="onClose()" v-if="isClosable">
+      <div class="macButton macButtonClose" @click="onClose">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
-            <path stroke="#4c0000" fill="none"
-                  d="M8.5,3.5 L6,6 L3.5,3.5 L6,6 L3.5,8.5 L6,6 L8.5,8.5 L6,6 L8.5,3.5 Z"></path>
+          <path
+            stroke="#4c0000"
+            fill="none"
+            d="M8.5,3.5 L6,6 L3.5,3.5 L6,6 L3.5,8.5 L6,6 L8.5,8.5 L6,6 L8.5,3.5 Z"
+          ></path>
         </svg>
-    </div>
-    <div class="macButton macButtonMinimize" @click="onMinimize()" v-if="isMinimizable">
+      </div>
+      <div class="macButton macButtonMinimize" @click="onMinimize()">
         <svg name="TitleBarMinimizeMac" width="12" height="12" viewBox="0 0 12 12">
-            <rect fill="#975500" width="8" height="2" x="2" y="5" fill-rule="evenodd"></rect>
+          <rect
+            fill="#975500"
+            width="8"
+            height="2"
+            x="2"
+            y="5"
+            fill-rule="evenodd"
+          ></rect>
         </svg>
-    </div>
-    <div class="macButton macButtonMaximize" @click="onMaximize" >
+      </div>
+      <div class="macButton macButtonMaximize" @click="onMaximize">
         <svg name="TitleBarMaximizeMac" width="12" height="12" viewBox="0 0 12 12">
-            <g fill="#006500" fill-rule="evenodd">  
-                <path d="M5,3 C5,3 5,6.1325704 5,6.48601043 C5,6.83945045 5.18485201,7 5.49021559,7 L9,7 L9,6 L8,6 L8,5 L7,5 L7,4 L6,4 L6,3 L5,3 Z"
-                      transform="rotate(180 7 5)"></path>
-                <path d="M3,5 C3,5 3,8.1325704 3,8.48601043 C3,8.83945045 3.18485201,9 3.49021559,9 L7,9 L7,8 L6,8 L6,7 L5,7 L5,6 L4,6 L4,5 L3,5 Z"></path>
-            </g>
+          <g fill="#006500" fill-rule="evenodd">
+            <path
+              d="M5,3 C5,3 5,6.1325704 5,6.48601043 C5,6.83945045 5.18485201,7 5.49021559,7 L9,7 L9,6 L8,6 L8,5 L7,5 L7,4 L6,4 L6,3 L5,3 Z"
+              transform="rotate(180 7 5)"
+            ></path>
+            <path
+              d="M3,5 C3,5 3,8.1325704 3,8.48601043 C3,8.83945045 3.18485201,9 3.49021559,9 L7,9 L7,8 L6,8 L6,7 L5,7 L5,6 L4,6 L4,5 L3,5 Z"
+            ></path>
+          </g>
         </svg>
-    </div>
+      </div>
     </div>
 
     <div class="titlebar-header">
@@ -41,17 +55,9 @@
       </div>
     </div>
 
-
-
     <div class="titlebar-buttons" v-if="platform === 'win32'">
       <font-awesome-icon icon="fa-solid fa-xmark" />
-      <button
-        aria-label="minimize"
-        title="Minimize"
-        tabindex="-1"
-        @click="onMinimize()"
-        
-      >
+      <button aria-label="minimize" title="Minimize" tabindex="-1" @click="onMinimize()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -64,13 +70,7 @@
         </svg>
       </button>
 
-      <button
-        aria-label="maximize"
-        title="Maximize"
-        tabindex="-1"
-        @click="maximize"
-    
-      >
+      <button aria-label="maximize" title="Maximize" tabindex="-1" @click="maximize">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -89,11 +89,16 @@
         tabindex="-1"
         class="close"
         @click="onClose()"
-        
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="10" height="10">
-          <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+          width="10"
+          height="10"
+        >
+          <path
+            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+          />
         </svg>
       </button>
     </div>
@@ -101,7 +106,6 @@
 </template>
 
 <script>
-
 // import {library} from '@fortawesome/fontawesome-svg-core'
 export default {
   components: {
@@ -123,7 +127,7 @@ export default {
         return [1, 2, 3];
       },
     },
-  
+
     showIcon: {
       type: Boolean,
       default: true,
@@ -141,20 +145,18 @@ export default {
       return `titlebar-platform-${this.platform}`;
     },
   },
-  method:{
-    maximize(){
-      window.api.maximize('maximize')
-
-    }
+  method: {
+    maximize() {
+      window.api.maximize("maximize");
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 $titlebar-height: 28px;
 .titlebar {
-  position: sticky  ;
+  position: sticky;
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
@@ -199,7 +201,8 @@ $titlebar-height: 28px;
     align-items: center;
     justify-content: center;
   }
-  .titlebar-icon,.titlebar-name {
+  .titlebar-icon,
+  .titlebar-name {
     display: flex;
     align-content: center;
     align-self: center;
