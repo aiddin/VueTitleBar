@@ -44,7 +44,10 @@ async function createWindow() {
     console.log('sending')
   }
 
- 
+  win.webContents.once('did-finish-load', () => {
+    win.webContents.send('dark', nativeTheme.shouldUseDarkColors)
+    win.webContents.send('os', process.platform)
+   })
 //   win.webContents.insertCSS( {
 //     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 // })`
@@ -77,6 +80,7 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the

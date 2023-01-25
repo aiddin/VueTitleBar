@@ -25,13 +25,13 @@ export default {
     HelloWorld,
     VTitleBar
   },
-  
+
 
   data() { 
     return {
       theme: 'light',
       nativeTheme: '',
-      platform: process.platform,
+      platform: 'darwin',
       test:'',
       dataToSend:'data to send to main.',
     } 
@@ -56,7 +56,7 @@ export default {
    async invokeTest(){
       this.platform = await window.api.getOs()
     this.nativeTheme = await window.api.getTheme()
-    window.api.greet("retrieving platform")
+    window.api.greet("hello from renderer invokeTest")
     console.log(this.platform+' is the platform')
       
   },
@@ -66,8 +66,10 @@ export default {
     console.log(this.platform+' is the platform')
 },
 mounted(){
-  this.invokeTest()
-  window.api.greet("hello from renderer")
+  setInterval(() => {
+   this.invokeTest()
+    console.log(this.platform+' is the platform')
+  }, 1000);
   
 }
 }

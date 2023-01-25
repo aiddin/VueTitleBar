@@ -4,7 +4,7 @@
     <div class="titlebar-resize-handle right"></div>
     <div class="titlebar-resize-handle left"></div>
 
-    <div v-if="platform === 'win32'" class="titlebar-buttons-osx">
+    <div v-if="platform === 'darwin'" class="titlebar-buttons-osx">
       <div class="macButton macButtonClose" @click="onClose()" v-if="isClosable">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
             <path stroke="#4c0000" fill="none"
@@ -43,7 +43,7 @@
 
 
 
-    <div class="titlebar-buttons" v-if="platform === 'darwin'">
+    <div class="titlebar-buttons" v-if="platform === 'win32'">
       <font-awesome-icon icon="fa-solid fa-xmark" />
       <button
         aria-label="minimize"
