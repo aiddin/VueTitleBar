@@ -134,3 +134,8 @@ ipcMain.on("greet", (event, args) => {
  var colors = nativeTheme.shouldUseDarkColors
   return colors;
  });
+
+ ipcMain.on("minimize", (event, args) => {
+  console.log(args)
+  BrowserWindow.getFocusedWindow().minimize()
+ });

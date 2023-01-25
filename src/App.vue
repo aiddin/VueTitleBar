@@ -5,6 +5,7 @@
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
   <button @click="invokeTest">click me</button>
+  <button @click="minimize">minimize me</button>
 </template>
 
 <script>
@@ -49,6 +50,9 @@ export default {
   },
  
   methods: {
+    minimize() {
+     window.api.minimize('minimize')
+    },
     clickTest(){
       console.log('process.platform: ', process.platform)
       window.api.greet(this.dataToSend)
@@ -58,6 +62,8 @@ export default {
     this.nativeTheme = await window.api.getTheme()
     window.api.greet("hello from renderer invokeTest")
     console.log(this.platform+' is the platform')
+    
+           
       
   },
   async created (){
