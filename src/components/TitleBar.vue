@@ -5,7 +5,7 @@
     <div class="titlebar-resize-handle left"></div>
 
     <div v-if="platform === 'darwin'" class="titlebar-buttons-osx">
-      <div class="macButton macButtonClose" @click="onClose">
+      <div class="macButton macButtonClose" @click="close">
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
           <path
             stroke="#4c0000"
@@ -14,7 +14,7 @@
           ></path>
         </svg>
       </div>
-      <div class="macButton macButtonMinimize" @click="onMinimize()">
+      <div class="macButton macButtonMinimize" @click="minimize">
         <svg name="TitleBarMinimizeMac" width="12" height="12" viewBox="0 0 12 12">
           <rect
             fill="#975500"
@@ -26,7 +26,7 @@
           ></rect>
         </svg>
       </div>
-      <div class="macButton macButtonMaximize" @click="onMaximize">
+      <div class="macButton macButtonMaximize" @click="maximize">
         <svg name="TitleBarMaximizeMac" width="12" height="12" viewBox="0 0 12 12">
           <g fill="#006500" fill-rule="evenodd">
             <path
@@ -42,22 +42,22 @@
     </div>
 
     <div class="titlebar-header">
-      <div class="titlebar-icon">LOGO</div>
-
-      <div class="titlebar-name" v-if="showTitle">Test Electron</div>
+      <button>
+        <slot/>
+      </button>
     </div>
 
-    <div class="titlebar-menu" v-if="platform === 'darwin'">
+    <!-- <div class="titlebar-menu" v-if="platform === 'darwin'">
       <div class="titlebar-menu-item" v-for="(item, index) in menu" :key="index">
         <button @click="item.click()">
          hehe
         </button>
       </div>
-    </div>
+    </div> -->
 
     <div class="titlebar-buttons" v-if="platform === 'win32'">
       <font-awesome-icon icon="fa-solid fa-xmark" />
-      <button aria-label="minimize" title="Minimize" tabindex="-1" @click="onMinimize()">
+      <button aria-label="minimize" title="Minimize" tabindex="-1" @click="minimize">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -88,7 +88,7 @@
         title="Close"
         tabindex="-1"
         class="close"
-        @click="onClose()"
+        @click="close"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -145,11 +145,24 @@ export default {
       return `titlebar-platform-${this.platform}`;
     },
   },
-  method: {
+  methods: {
+    minimize() {
+      window.api.minimize("minimize");
+    },
     maximize() {
       window.api.maximize("maximize");
     },
+    close() {
+      window.api.close("close");
+    },
   },
+
+    async mounted() {
+     
+      this.nativeTheme = await window.api.getTheme();
+      console.log(this.platform + " from titlenbar");
+    },
+  
 };
 </script>
 
@@ -183,16 +196,16 @@ $titlebar-height: 28px;
     -webkit-app-region: no-drag;
     &.top {
       width: 100%;
-      height: 2px;
+      
     }
     &.right {
       left: auto;
       right: 0;
-      width: 2px;
+      
       height: $titlebar-height;
     }
     &.left {
-      width: 2px;
+      
       height: $titlebar-height;
     }
   }

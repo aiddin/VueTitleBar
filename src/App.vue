@@ -1,12 +1,13 @@
 <template>
-  <VTitleBar :platform="platform" :theme="theme" />
+  <VTitleBar :platform="platform" :theme="theme">
+    <button>slotted</button> 
+  </VTitleBar>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
+  <br>
   <button @click="invokeTest">click me</button>
-  <button @click="minimize">minimize me</button>
-  <button @click="maximize">maximize me</button>
-  <button @click="close">close me</button>
+
 </template>
 
 <script>
@@ -72,11 +73,11 @@ export default {
     
     
   },
- async mounted() {
-      this.platform = await window.api.getOs();
-      this.nativeTheme = await window.api.getTheme();
-      console.log(this.platform + " is the platform mounted");
-    },
+//  async mounted() {
+//       this.platform = await window.api.getOs();
+//       this.nativeTheme = await window.api.getTheme();
+//       console.log(this.platform + " is the platform mounted");
+//     },
 };
 </script>
 
