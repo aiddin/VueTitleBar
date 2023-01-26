@@ -18,6 +18,8 @@ import VTitleBar from "./components/TitleBar.vue";
 // const { nativeTheme } = require("electron").remote;
 // const electron = require("electron");
 // const nativeTheme = electron.remote.nativeTheme;
+window.api.theme("theme")
+window.api.os("os")
 
 export default {
   name: "App",
@@ -67,18 +69,14 @@ export default {
       window.api.greet("hello from renderer invokeTest");
       console.log(this.platform + " is the platform");
     },
-    async created() {
-      this.platform = await window.api.getOs();
-      this.nativeTheme = await window.api.getTheme();
-      console.log(this.platform + " is the platform");
-    },
-    mounted() {
-      setInterval(() => {
-        this.invokeTest();
-        console.log(this.platform + " is the platform");
-      }, 1000);
-    },
+    
+    
   },
+//  async mounted() {
+//       this.platform = await window.api.getOs();
+//       this.nativeTheme = await window.api.getTheme();
+//       console.log(this.platform + " is the platform mounted");
+//     },
 };
 </script>
 

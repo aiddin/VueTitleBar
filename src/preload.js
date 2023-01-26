@@ -8,11 +8,18 @@ const WINDOW_API = {
   minimize: (message) => ipcRenderer.send("minimize",message),
   maximize: (message) => ipcRenderer.send("maximize",message),
   close: (message) => ipcRenderer.send("close",message),
-  
+
+  // eslint-disable-next-line no-unused-vars
+  theme: (message) => ipcRenderer.on("theme",(event, args) => {
+    
+  }),
+  // eslint-disable-next-line no-unused-vars
+  os: (message) => ipcRenderer.on("os",(event, args) => {
+    
+  }),
 }
 contextBridge.exposeInMainWorld("api", WINDOW_API);
 
-console.log(process.platform)
 
 
 

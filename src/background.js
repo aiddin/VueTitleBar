@@ -21,25 +21,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     frame: false,
     transparent: true,
-    titleBarStyle: 'hiddenInset',
-    overflow: 'hidden', 
-    width: 800,
-    height: 600,
-    webPreferences: {
-      
-     
-      // Use pluginOptions.nodeIntegration, leave this alone
-      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      enableRemoteModule: true,
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
-  const huh = new BrowserWindow({
-    frame: false,
-    transparent: true,
-    titleBarStyle: 'hiddenInset',
+    titleBarStyle: 'darwin',
     overflow: 'hidden', 
     width: 800,
     height: 600,
@@ -64,7 +46,7 @@ async function createWindow() {
   }
 
   win.webContents.once('did-finish-load', () => {
-    win.webContents.send('dark', nativeTheme.shouldUseDarkColors)
+    win.webContents.send('theme', nativeTheme.shouldUseDarkColors)
     win.webContents.send('os', process.platform)
    })
 //   win.webContents.insertCSS( {
@@ -74,17 +56,7 @@ async function createWindow() {
 //win.webContents.insertCSS(::-webkit-scrollbar { 
 //     display: none;  /* Safari and Chrome */
 // })
-if (process.env.WEBPACK_DEV_SERVER_URL) {
-  // Load the url of the dev server if in development mode
-  await huh.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-  if (!process.env.IS_TEST) huh.webContents.openDevTools()
-  console.log('hehe')
-} else {
-  createProtocol('TestTer')
-  // Load the index.html when not in development
-  huh.loadURL('test://./index.html')
-  
-}
+
   
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -96,6 +68,10 @@ if (process.env.WEBPACK_DEV_SERVER_URL) {
     createProtocol('app')
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
+    win.webContents.on('did-finish-load', () => {
+      win.webContents.send('theme', nativeTheme.shouldUseDarkColors)
+      win.webContents.send('os', process.platform)
+     }) 
     
   }
 }
@@ -133,10 +109,11 @@ app.on('ready', async () => {
   createWindow()
 })
 
+
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === 'win32') {
-    console.log(process.platform)
+    
     process.on('message', (data) => {
       if (data === 'graceful-exit') {
         app.quit()
