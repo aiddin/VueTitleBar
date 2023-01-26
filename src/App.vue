@@ -72,11 +72,11 @@ export default {
     
     
   },
-//  async mounted() {
-//       this.platform = await window.api.getOs();
-//       this.nativeTheme = await window.api.getTheme();
-//       console.log(this.platform + " is the platform mounted");
-//     },
+ async mounted() {
+      this.platform = await window.api.getOs();
+      this.nativeTheme = await window.api.getTheme();
+      console.log(this.platform + " is the platform mounted");
+    },
 };
 </script>
 
