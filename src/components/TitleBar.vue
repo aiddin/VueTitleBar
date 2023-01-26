@@ -50,7 +50,7 @@
     <div class="titlebar-menu" v-if="platform === 'darwin'">
       <div class="titlebar-menu-item" v-for="(item, index) in menu" :key="index">
         <button @click="item.click()">
-          {{ item.label }}
+         hehe
         </button>
       </div>
     </div>
