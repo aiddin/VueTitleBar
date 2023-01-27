@@ -1,12 +1,13 @@
 <template>
   <VTitleBar :platform="platform" :theme="theme">
-    <button>slotted</button> 
+   <slot id="title"><button @click="invokeTest">huh</button></slot>
   </VTitleBar>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
   <br>
-  <button @click="invokeTest">click me</button>
+  <button @click="invokeTest">Windows</button>
+  <button @click="changeTheme">macOs</button>
 
 </template>
 
@@ -69,6 +70,11 @@ export default {
       this.nativeTheme = await window.api.getTheme();
       window.api.greet("hello from renderer invokeTest");
       console.log(this.platform + " is the platform");
+      
+    },
+    changeTheme() {
+      this.nativeTheme = !this.nativeTheme;
+      this.platform= "darwin";
     },
     
     

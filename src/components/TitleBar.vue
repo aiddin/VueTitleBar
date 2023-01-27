@@ -41,10 +41,11 @@
       </div>
     </div>
 
+
+    
     <div class="titlebar-header">
-      <button>
-        <slot/>
-      </button>
+      
+      <slot class="slothover" id="title"></slot>
     </div>
 
     <!-- <div class="titlebar-menu" v-if="platform === 'darwin'">
@@ -167,6 +168,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slotHover {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 8px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: 2px dashed #ccc;
+  color: #ccc;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 $titlebar-height: 28px;
 .titlebar {
   position: sticky;
