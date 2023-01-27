@@ -42,7 +42,7 @@
     </div>
 
 
-    
+
     <div class="titlebar-header">
       
       <slot class="slothover" id="title"></slot>
@@ -122,12 +122,6 @@ export default {
       type: String,
       required: true,
     },
-    menu: {
-      type: Array,
-      default: function () {
-        return [1, 2, 3];
-      },
-    },
 
     showIcon: {
       type: Boolean,
@@ -146,6 +140,7 @@ export default {
       return `titlebar-platform-${this.platform}`;
     },
   },
+
   methods: {
     minimize() {
       window.api.minimize("minimize");
@@ -157,13 +152,11 @@ export default {
       window.api.close("close");
     },
   },
-
     async mounted() {
      
       this.nativeTheme = await window.api.getTheme();
       console.log(this.platform + " from titlenbar");
     },
-  
 };
 </script>
 

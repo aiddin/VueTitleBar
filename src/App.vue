@@ -2,6 +2,8 @@
   <VTitleBar :platform="platform" :theme="theme">
    <slot id="title"><button @click="invokeTest">huh</button></slot>
   </VTitleBar>
+
+
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
@@ -15,13 +17,6 @@
 // Renderer process
 import HelloWorld from "./components/HelloWorld.vue";
 import VTitleBar from "./components/TitleBar.vue";
-// import { channel } from 'diagnostics_channel';
-// import {nativeTheme} from 'electron';
-// const { nativeTheme } = require("electron").remote;
-// const electron = require("electron");
-// const nativeTheme = electron.remote.nativeTheme;
-window.api.theme("theme")
-window.api.os("os")
 
 export default {
   name: "App",
@@ -29,7 +24,6 @@ export default {
     HelloWorld,
     VTitleBar,
   },
-
   data() {
     return {
       theme: "light",
@@ -76,14 +70,12 @@ export default {
       this.nativeTheme = !this.nativeTheme;
       this.platform= "darwin";
     },
-    
-    
   },
-//  async mounted() {
-//       this.platform = await window.api.getOs();
-//       this.nativeTheme = await window.api.getTheme();
-//       console.log(this.platform + " is the platform mounted");
-//     },
+ async mounted() {
+      this.platform = await window.api.getOs();
+      this.nativeTheme = await window.api.getTheme();
+      console.log(this.platform + " is the platform mounted");
+    },
 };
 </script>
 
