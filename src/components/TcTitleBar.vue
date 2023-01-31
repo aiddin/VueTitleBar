@@ -159,6 +159,7 @@ $titlebar-height: 28px;
   }
   .titlebar-menu {
     display: flex;
+    padding: 5px;
     -webkit-app-region: no-drag;
     .titlebar-menu-item {
       min-width: 0;
@@ -186,6 +187,7 @@ $titlebar-height: 28px;
     }
   }
   .titlebar-menu-osx {
+    padding: 5px;//padding for menu items for macOs
     margin-left: auto;
     display: flex;
     -webkit-app-region: no-drag;

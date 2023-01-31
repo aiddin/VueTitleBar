@@ -1,17 +1,19 @@
 <template>
+ 
   <VTitleBar :platform="platform" :theme="theme" :darkTheme="darkTheme">
     <template v-slot>
-      Slotted content
+      Slot Content
     </template>
   </VTitleBar>
-  
-
+  <br>
+  <button @click="invokeTest">Windows</button>
+  <button @click="changeTheme">macOs</button>
+<br>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
   <br />
-  <button @click="invokeTest">Windows</button>
-  <button @click="changeTheme">macOs</button>
+  
 </template>
 
 <script>
