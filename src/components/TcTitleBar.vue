@@ -39,17 +39,17 @@
           </g>
         </svg>
       </div>
-      <div class="macButton macButtonMaximize"><slot name="button">
+      <!-- <div class="macButton macButtonMaximize"><slot name="button">
         <button>deafault button</button>
-      </slot></div>
-      
+      </slot></div> -->
     </div>
 
-
-
-    
-   
-
+    <div v-if="platform==='win32'" class="titlebar-menu">
+      <slot></slot>
+    </div>
+    <div v-if="platform==='darwin'" class="titlebar-menu-osx">
+      <slot></slot>
+    </div>
 
     <!-- <div class="titlebar-menu" v-if="platform === 'darwin'">
       <div class="titlebar-menu-item" v-for="(item, index) in menu" :key="index">
@@ -87,13 +87,7 @@
         </svg>
       </button>
 
-      <button
-        aria-label="close"
-        title="Close"
-        tabindex="-1"
-        class="close"
-        @click="close"
-      >
+      <button aria-label="close" title="Close" tabindex="-1" class="close" @click="close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"
@@ -112,12 +106,11 @@
 <script>
 // import {library} from '@fortawesome/fontawesome-svg-core'
 export default {
-  props:["theme","platform","darkTheme"],
+  props: ["theme", "platform", "darkTheme"],
   components: {
     // library,
   },
   name: "TitleBar",
-  
   computed: {
     styleClass() {
       return `titlebar-style`;
@@ -126,7 +119,6 @@ export default {
       return `titlebar-platform-${this.platform}`;
     },
   },
-
   methods: {
     minimize() {
       window.api.minimize("minimize");
@@ -138,30 +130,15 @@ export default {
       window.api.close("close");
     },
   },
-    async mounted() {
-     
-      this.nativeTheme = await window.api.getTheme();
-      console.log(this.platform + " from titlenbar");
-    },
+  async mounted() {
+    this.nativeTheme = await window.api.getTheme();
+    console.log(this.platform + " from titlenbar");
+  },
 };
 </script>
 
+
 <style lang="scss" scoped>
-.slotHover {
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 8px;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  margin: 0 auto;
-  
-  border: 2px dashed #ccc;
-  color: #ccc;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
 $titlebar-height: 28px;
 .titlebar {
   position: sticky;
@@ -180,63 +157,6 @@ $titlebar-height: 28px;
     color: #fff;
     background: v-bind(darkTheme);
   }
-
-  .titlebar-resize-handle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-app-region: no-drag;
-    &.top {
-      width: 100%;
-      
-    }
-    &.right {
-      left: auto;
-      right: 0;
-      
-      height: $titlebar-height;
-    }
-    &.left {
-      
-      height: $titlebar-height;
-    }
-  }
-  .titlebar-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .titlebar-icon,
-  .titlebar-name {
-    display: flex;
-    align-content: center;
-    align-self: center;
-    flex-grow: 0;
-    flex-shrink: 0;
-    font-size: 14px;
-    line-height: $titlebar-height;
-    padding: 0 12px;
-    height: $titlebar-height;
-    > svg,
-    > img {
-      display: block;
-      align-content: center;
-      align-self: center;
-      width: auto;
-      height: 16px;
-    }
-  }
-  .titlebar-icon ~ .titlebar-name {
-    padding-left: 0;
-  }
-  &.titlebar-platform-darwin {
-    .titlebar-header {
-      width: 100%;
-      text-align: center;
-      position: absolute;
-      pointer-events: none;
-    }
-  }
   .titlebar-menu {
     display: flex;
     -webkit-app-region: no-drag;
@@ -254,6 +174,34 @@ $titlebar-height: 28px;
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin: 0;
+        color: currentColor;
+        font-size: 13px;
+        padding: 0 10px;
+        outline: none;
+        &:hover {
+          background-color: rgb(0, 0, 0);
+        }
+      }
+    }
+  }
+  .titlebar-menu-osx {
+    display: flex;
+    -webkit-app-region: no-drag;
+    .titlebar-menu-osx-item {
+      min-width: 0;
+      position: relative;
+      cursor: pointer;
+      button {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: right;
         margin: 0;
         color: currentColor;
         font-size: 13px;

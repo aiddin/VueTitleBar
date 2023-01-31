@@ -1,7 +1,7 @@
 <template>
   <VTitleBar :platform="platform" :theme="theme" :darkTheme="darkTheme">
-    <template v-slot:button>
-      <button @click="maximize">app BUtton</button>
+    <template v-slot>
+      <button @click="maximize">app button</button>
     </template>
   </VTitleBar>
   
