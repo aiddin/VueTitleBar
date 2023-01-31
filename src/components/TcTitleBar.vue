@@ -47,7 +47,7 @@
     <div v-if="platform==='win32'" class="titlebar-menu">
       <slot></slot>
     </div>
-    <div v-if="platform==='darwin'" class="titlebar-menu-osx">
+    <div v-if="platform==='darwin'" class="titlebar-menu-osx" >
       <slot></slot>
     </div>
 
