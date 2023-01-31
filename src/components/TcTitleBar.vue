@@ -9,7 +9,7 @@
         <svg name="TitleBarCloseMac" width="12" height="12" viewBox="0 0 12 12">
           <path
             stroke="#4c0000"
-            fill="none"
+            fill="#4c0000"
             d="M8.5,3.5 L6,6 L3.5,3.5 L6,6 L3.5,8.5 L6,6 L8.5,8.5 L6,6 L8.5,3.5 Z"
           ></path>
         </svg>
@@ -39,14 +39,17 @@
           </g>
         </svg>
       </div>
-    </div>
-
-
-
-    <div class="titlebar-header">
+      <div class="macButton macButtonMaximize"><slot name="button">
+        <button>deafault button</button>
+      </slot></div>
       
-      <slot class="slothover" id="title"></slot>
     </div>
+
+
+
+    
+   
+
 
     <!-- <div class="titlebar-menu" v-if="platform === 'darwin'">
       <div class="titlebar-menu-item" v-for="(item, index) in menu" :key="index">
@@ -109,32 +112,15 @@
 <script>
 // import {library} from '@fortawesome/fontawesome-svg-core'
 export default {
+  props:["theme","platform","darkTheme"],
   components: {
     // library,
   },
   name: "TitleBar",
-  props: {
-    theme: {
-      type: String,
-      default: "light",
-    },
-    platform: {
-      type: String,
-      required: true,
-    },
-
-    showIcon: {
-      type: Boolean,
-      default: true,
-    },
-    showTitle: {
-      type: Boolean,
-      default: true,
-    },
-  },
+  
   computed: {
     styleClass() {
-      return `titlebar-style-${this.theme}`;
+      return `titlebar-style`;
     },
     stylePlatform() {
       return `titlebar-platform-${this.platform}`;
@@ -169,7 +155,7 @@ export default {
   height: 200px;
   text-align: center;
   margin: 0 auto;
-  margin-top: 100px;
+  
   border: 2px dashed #ccc;
   color: #ccc;
   font-size: 20px;
@@ -190,14 +176,11 @@ $titlebar-height: 28px;
   z-index: 99999;
   height: $titlebar-height;
   -webkit-app-region: drag;
-  &.titlebar-style-dark {
+  &.titlebar-style {
     color: #fff;
-    background: #626262;
+    background: v-bind(darkTheme);
   }
-  &.titlebar-style-light {
-    color: #989696;
-    background: #470b0b;
-  }
+
   .titlebar-resize-handle {
     position: absolute;
     top: 0;

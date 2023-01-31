@@ -1,22 +1,23 @@
 <template>
-  <VTitleBar :platform="platform" :theme="theme">
-   <slot id="title"><button @click="invokeTest">huh</button></slot>
+  <VTitleBar :platform="platform" :theme="theme" :darkTheme="darkTheme">
+    <template v-slot:button>
+      <button @click="maximize">app BUtton</button>
+    </template>
   </VTitleBar>
-
+  
 
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Welcome to Your Vue.js App" :platform="platform" />
   {{ platform }}
-  <br>
+  <br />
   <button @click="invokeTest">Windows</button>
   <button @click="changeTheme">macOs</button>
-
 </template>
 
 <script>
 // Renderer process
 import HelloWorld from "./components/HelloWorld.vue";
-import VTitleBar from "./components/TitleBar.vue";
+import VTitleBar from "./components/TcTitleBar.vue";
 
 export default {
   name: "App",
@@ -31,7 +32,10 @@ export default {
       platform: "darwin",
       test: "",
       dataToSend: "data to send to main.",
-    };
+      darkTheme:'#616161'
+      }
+      
+    
   },
   watch: {
     nativeTheme: {
@@ -64,22 +68,22 @@ export default {
       this.nativeTheme = await window.api.getTheme();
       window.api.greet("hello from renderer invokeTest");
       console.log(this.platform + " is the platform");
-      
     },
     changeTheme() {
       this.nativeTheme = !this.nativeTheme;
-      this.platform= "darwin";
+      this.platform = "darwin";
     },
   },
- async mounted() {
-      this.platform = await window.api.getOs();
-      this.nativeTheme = await window.api.getTheme();
-      console.log(this.platform + " is the platform mounted");
-    },
+  async mounted() {
+    this.platform = await window.api.getOs();
+    this.nativeTheme = await window.api.getTheme();
+    console.log(this.platform + " is the platform mounted");
+  },
 };
 </script>
 
 <style>
+::-webkit-scrollbar { display: none;}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

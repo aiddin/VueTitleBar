@@ -22,7 +22,7 @@ async function createWindow() {
     frame: false,
     transparent: true,
     titleBarStyle: 'darwin',
-    overflow: 'hidden', 
+    
     width: 800,
     height: 600,
     webPreferences: {
