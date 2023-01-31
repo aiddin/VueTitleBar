@@ -1,7 +1,7 @@
 <template>
   <VTitleBar :platform="platform" :theme="theme" :darkTheme="darkTheme">
     <template v-slot>
-      <button @click="maximize">app button</button>
+      Slotted content
     </template>
   </VTitleBar>
   
@@ -29,8 +29,7 @@ export default {
     return {
       theme: "light",
       nativeTheme: "",
-      platform: "darwin",
-      test: "",
+
       dataToSend: "data to send to main.",
       darkTheme:'#616161'
       }

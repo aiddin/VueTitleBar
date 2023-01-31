@@ -106,7 +106,7 @@
 <script>
 // import {library} from '@fortawesome/fontawesome-svg-core'
 export default {
-  props: ["theme", "platform", "darkTheme"],
+  props: ["platform", "darkTheme"],
   components: {
     // library,
   },
@@ -186,6 +186,7 @@ $titlebar-height: 28px;
     }
   }
   .titlebar-menu-osx {
+    margin-left: auto;
     display: flex;
     -webkit-app-region: no-drag;
     .titlebar-menu-osx-item {
@@ -193,20 +194,21 @@ $titlebar-height: 28px;
       position: relative;
       cursor: pointer;
       button {
-        border: none;
-        box-shadow: none;
-        background: transparent;
-        height: 100%;
-        width: 100%;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-items: right;
-        margin: 0;
-        color: currentColor;
-        font-size: 13px;
-        padding: 0 10px;
-        outline: none;
+      -webkit-app-region: no-drag;
+      display: inline-block;
+      position: relative;
+      width: 45px;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      color: currentColor;
+      background-color: transparent;
+      line-height: 10px;
+      outline: none;
         &:hover {
           background-color: rgb(0, 0, 0);
         }
